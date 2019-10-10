@@ -5,14 +5,14 @@ describe('Booking toJson', function () {
         let booking = new Booking();
         booking.id = "1";
 	    booking.jetpackId = "1";
-	    booking.startDate = new Date(2019, 8, 6, 10, 12).toJSON();
-	    booking.endDate = new Date(2019, 8, 9, 10, 23).toJSON();
+	    booking.startDate = new Date(Date.UTC(2019, 8, 6, 10, 12)).toJSON();
+	    booking.endDate = new Date(Date.UTC(2019, 8, 9, 10, 23)).toJSON();
 
         expect(booking.toJson()).toMatchObject({
             id: "1",
             jetpackId: "1",
-            startDate: "2019-09-06T08:12:00.000Z",
-            endDate: "2019-09-09T08:23:00.000Z"
+            startDate: "2019-09-06T10:12:00.000Z",
+            endDate: "2019-09-09T10:23:00.000Z"
         })
     });
     
