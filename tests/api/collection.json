@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "db66848b-13cc-4d8d-add7-ce6d33d67965",
+    "_postman_id": "a1124985-6f92-4948-a762-f60a6a3ca1bf",
     "name": "Ensiie Test Back",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -51,6 +51,67 @@
         "body": {
           "mode": "raw",
           "raw": "{\n\t\"name\":\"Jet Pack à fusion X98371\",\n\t\"image\": \"Base 64 ...\"\n}"
+        },
+        "url": {
+          "raw": "{{url}}/jetpacks",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "jetpacks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get JetPack",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
+            "exec": [
+              "pm.globals.set('url', 'http://localhost:3000')"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Json bdy has information\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData[0].name).to.eql(\"Jet Pack à fusion X98371\");",
+              "    pm.expect(jsonData[0].image).to.eql(\"Base 64 ...\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"id\":\"8aa1f794-6fae-443b-9e01-75f9b0bdc4d7\"\n}"
         },
         "url": {
           "raw": "{{url}}/jetpacks",
