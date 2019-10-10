@@ -17,10 +17,12 @@ module.exports = class {
             .push(jetpack.toJson())
             .write()
     }
-
+    // Marwan
     getAll() {
         return this.db.get('jetpacks').value();
     }
+
+    // Marwan
     getOne(Id) {
         if (this.db.get('jetpacks').filter({id: Id}).size().value() < 1)
             throw 'Jetpack with ID :' + Id + ' was not founded';
