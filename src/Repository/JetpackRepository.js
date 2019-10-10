@@ -17,4 +17,14 @@ module.exports = class {
             .push(jetpack.toJson())
             .write()
     }
+
+    getAll() {
+        return this.db.get('jetpacks').value();
+    }
+    getOne(Id) {
+        if (this.db.get('jetpacks').filter({id: Id}).size().value() < 1)
+            throw 'Jetpack with ID :' + Id + ' was not founded';
+
+        return this.db.get('jetpacks').filter({id: Id}).value();
+    }
 };
