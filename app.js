@@ -9,7 +9,9 @@ app
     .route('/jetpacks/:id?')
     .get(require('./controller/Jetpack/GetJetpackController'))
     .post(require('./controller/Jetpack/CreateJetpackController'));
-
+app
+    .route('/deletejetpack/:id?')
+    .get(require('./controller/Jetpack/DeleteJetpackController'));
 app
     .route('/bookings/')
     .get(require('./controller/Booking/GetBookingController'));
