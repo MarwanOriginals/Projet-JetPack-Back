@@ -17,16 +17,25 @@ module.exports = class {
             .push(jetpack.toJson())
             .write()
     }
-    // Marwan
+
+
     getAll() {
         return this.db.get('jetpacks').value();
     }
 
-    // Marwan
+
     getOne(Id) {
         if (this.db.get('jetpacks').filter({id: Id}).size().value() < 1)
             throw 'Jetpack with ID :' + Id + ' was not founded';
 
         return this.db.get('jetpacks').filter({id: Id}).value();
+    }
+
+    delete(Id) {
+        if (this.db.get('jetpacks').filter({id: Id}).size().value() < 1)
+            throw 'Jetpack with ID :' + Id + ' was not founded';
+
+        this.db.get('jetpacks').remove({ id: Id }).write();
+        return 1;
     }
 };
