@@ -13,6 +13,12 @@ app
     .route('/deletejetpack/:id?')
     .get(require('./controller/Jetpack/DeleteJetpackController'));
 app
+    .route('/updateName/:id?')
+    .post(require('./controller/Jetpack/UpdateNameJetpackController'));
+app
+    .route('/updateImage/:id?')
+    .post(require('./controller/Jetpack/UpdateImageJetpackController'));
+app
     .route('/bookings/')
     .get(require('./controller/Booking/GetBookingController'));
 
