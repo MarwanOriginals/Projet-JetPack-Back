@@ -126,6 +126,67 @@
       "response": []
     },
     {
+      "name": "Get JetPack Available",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
+            "exec": [
+              "pm.globals.set('url', 'http://localhost:3000')"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Json bdy has information\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData[0].name).to.eql(\"Jet Pack à fusion X98371\");",
+              "    pm.expect(jsonData[0].image).to.eql(\"Base 64 ...\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"startDate\":\"2020-02-10T00:00:00.000Z\"\n}"
+        },
+        "url": {
+          "raw": "{{url}}/jetpacks",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "jetpacks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "Delete JetPack",
       "event": [
         {
@@ -246,7 +307,7 @@
         {
           "listen": "test",
           "script": {
-            "id": "1865a7f8-ea2e-47dc-81f9-e34e5609d19f",
+            "id": "255bf974-90ec-4021-b435-c642863645fd",
             "exec": [
               "pm.test(\"Status code is 200\", function () {",
               "    pm.response.to.have.status(200);",
@@ -263,7 +324,7 @@
         {
           "listen": "prerequest",
           "script": {
-            "id": "3a5ff034-a046-46fc-9ed1-9b73b6adc746",
+            "id": "4db9f6c5-9ae2-4cde-9877-a5a4b4ccede7",
             "exec": [
               "pm.globals.set('url', 'http://localhost:3000')"
             ],
