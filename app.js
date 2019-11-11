@@ -19,6 +19,9 @@ app
     .route('/updateImage/:id?')
     .post(require('./controller/Jetpack/UpdateImageJetpackController'));
 app
+    .route('/getAvailableJetpack/:id?')
+    .get(require('./controller/Jetpack/GetAvailableController'));
+app
     .route('/bookings/')
     .get(require('./controller/Booking/GetBookingController'));
 
