@@ -8,14 +8,12 @@ module.exports = class {
     }
 
     create(booking) {
-        if (!booking) {
+        if (!booking)
             throw new Error('Booking object is undefined');
-        }
 
-        if (!booking.id || !booking.jetpackId || !booking.startDate || !booking.endDate) {
+        if (!booking.id || !booking.jetpackId || !booking.startDate || !booking.endDate)
             throw new Error('Booking object is missing information');
-        }
-
+		
         this.db
             .get('bookings')
             .push(booking.toJson())
