@@ -1,4 +1,112 @@
 const BookingRepository = require('./BookingRepository');
+const Booking = require('../Entity/Booking');
+
+describe('Booking repository Create', function () {
+
+    test('Create booking', () => {
+        const dbMock = {
+            get : jest.fn().mockReturnThis(),
+            push : jest.fn().mockReturnThis(),
+            write : jest.fn().mockReturnThis()
+        };
+        const repository = new BookingRepository(dbMock);
+        
+        let startDate = new Date(Date.UTC(2019, 8, 9));
+        let endDate = new Date(Date.UTC(2019, 8, 12));
+        let booking = new Booking();
+        booking.id = '1';
+        booking.jetpackId = '2';
+        booking.startDate = startDate.toJSON();
+        booking.endDate = endDate.toJSON();
+        
+        expect(repository.create(booking)).toEqual('Created');
+    });
+
+    test('Create null booking', () => {
+        const dbMock = {
+            get : jest.fn().mockReturnThis(),
+            push : jest.fn().mockReturnThis(),
+            write : jest.fn().mockReturnThis()
+        };
+        const repository = new BookingRepository(dbMock);
+        
+        expect(() => repository.create(null)).toThrowError(Error('Booking object is undefined'));
+    });
+
+    test('Create booking missing id', () => {
+        const dbMock = {
+            get : jest.fn().mockReturnThis(),
+            push : jest.fn().mockReturnThis(),
+            write : jest.fn().mockReturnThis()
+        };
+        const repository = new BookingRepository(dbMock);
+        
+        let startDate = new Date(Date.UTC(2019, 8, 9));
+        let endDate = new Date(Date.UTC(2019, 8, 12));
+        let booking = new Booking();
+        booking.id = '';
+        booking.jetpackId = '2';
+        booking.startDate = startDate.toJSON();
+        booking.endDate = endDate.toJSON();
+        
+        expect(() => repository.create(booking)).toThrowError(Error('Booking object is missing information'));
+    });
+    
+    test('Create booking missing jetpack id', () => {
+        const dbMock = {
+            get : jest.fn().mockReturnThis(),
+            push : jest.fn().mockReturnThis(),
+            write : jest.fn().mockReturnThis()
+        };
+        const repository = new BookingRepository(dbMock);
+        
+        let startDate = new Date(Date.UTC(2019, 8, 9));
+        let endDate = new Date(Date.UTC(2019, 8, 12));
+        let booking = new Booking();
+        booking.id = '1';
+        booking.jetpackId = '';
+        booking.startDate = startDate.toJSON();
+        booking.endDate = endDate.toJSON();
+        
+        expect(() => repository.create(booking)).toThrowError(Error('Booking object is missing information'));
+    });
+    
+    test('Create booking missing start date', () => {
+        const dbMock = {
+            get : jest.fn().mockReturnThis(),
+            push : jest.fn().mockReturnThis(),
+            write : jest.fn().mockReturnThis()
+        };
+        const repository = new BookingRepository(dbMock);
+        
+        let startDate = new Date(Date.UTC(2019, 8, 9));
+        let endDate = new Date(Date.UTC(2019, 8, 12));
+        let booking = new Booking();
+        booking.id = '1';
+        booking.jetpackId = '2';
+        booking.endDate = endDate.toJSON();
+        
+        expect(() => repository.create(booking)).toThrowError(Error('Booking object is missing information'));
+    });
+    
+    test('Create booking missing end date', () => {
+        const dbMock = {
+            get : jest.fn().mockReturnThis(),
+            push : jest.fn().mockReturnThis(),
+            write : jest.fn().mockReturnThis()
+        };
+        const repository = new BookingRepository(dbMock);
+        
+        let startDate = new Date(Date.UTC(2019, 8, 9));
+        let endDate = new Date(Date.UTC(2019, 8, 12));
+        let booking = new Booking();
+        booking.id = '1';
+        booking.jetpackId = '2';
+        booking.startDate = startDate.toJSON();
+        
+        expect(() => repository.create(booking)).toThrowError(Error('Booking object is missing information'));
+    });
+});
 
 describe('Booking repository GetAll', function () {
 
