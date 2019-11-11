@@ -1,363 +1,471 @@
 {
-  "info": {
-    "_postman_id": "05eb8c4d-8eab-4803-a63f-3d172d990864",
-    "name": "Ensiie Test Back",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Create a Jet Pack",
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
-            "exec": [
-              "pm.globals.set('url', 'http://localhost:3000')"
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
-            "exec": [
-              "pm.test(\"Status code is 201\", function () {",
-              "    pm.response.to.have.status(201);",
-              "});",
-              "",
-              "pm.test(\"Json bdy has information\", function () {",
-              "    var jsonData = pm.response.json();",
-              "    pm.expect(jsonData.name).to.eql(\"Jet Pack à fusion X2\");",
-              "    pm.expect(jsonData.image).to.eql(\"Base 64 ...\");",
-              "    pm.globals.set('jetpack.id', jsonData.id)",
-              "});"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "name": "Content-Type",
-            "value": "application/json",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\t\"name\":\"Jet Pack à fusion X2\",\n\t\"image\": \"Base 64 ...\"\n}"
-        },
-        "url": {
-          "raw": "{{url}}/jetpacks",
-          "host": [
-            "{{url}}"
-          ],
-          "path": [
-            "jetpacks"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get JetPack",
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
-            "exec": [
-              "pm.globals.set('url', 'http://localhost:3000')"
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
-            "exec": [
-              "pm.test(\"Status code is 200\", function () {",
-              "    pm.response.to.have.status(200);",
-              "});",
-              "",
-              "pm.test(\"Json bdy has information\", function () {",
-              "    var jsonData = pm.response.json();",
-              "    pm.expect(jsonData[0].name).to.eql(\"Jet Pack à fusion X98371\");",
-              "    pm.expect(jsonData[0].image).to.eql(\"Base 64 ...\");",
-              "});"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Content-Type",
-            "name": "Content-Type",
-            "type": "text",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\t\"id\":\"8aa1f794-6fae-443b-9e01-75f9b0bdc4d7\"\n}"
-        },
-        "url": {
-          "raw": "{{url}}/jetpacks",
-          "host": [
-            "{{url}}"
-          ],
-          "path": [
-            "jetpacks"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get JetPack Available",
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
-            "exec": [
-              "pm.globals.set('url', 'http://localhost:3000')"
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
-            "exec": [
-              "pm.test(\"Status code is 200\", function () {",
-              "    pm.response.to.have.status(200);",
-              "});",
-              "",
-              "pm.test(\"Json bdy has information\", function () {",
-              "    var jsonData = pm.response.json();",
-              "    pm.expect(jsonData[0].name).to.eql(\"Jet Pack à fusion X98371\");",
-              "    pm.expect(jsonData[0].image).to.eql(\"Base 64 ...\");",
-              "});"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Content-Type",
-            "name": "Content-Type",
-            "type": "text",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\t\"startDate\":\"2020-02-10T00:00:00.000Z\"\n}"
-        },
-        "url": {
-          "raw": "{{url}}/jetpacks",
-          "host": [
-            "{{url}}"
-          ],
-          "path": [
-            "jetpacks"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Delete JetPack",
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
-            "exec": [
-              "pm.globals.set('url', 'http://localhost:3000')"
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
-            "exec": [
-              "pm.test(\"Status code is 500\", function () {",
-              "    pm.response.to.have.status(500);",
-              "});",
-              "",
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Content-Type",
-            "name": "Content-Type",
-            "type": "text",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\t\"id\":\"57ccf987-54a3-4484-85a0-9df79a1c5a5d\"\n}"
-        },
-        "url": {
-          "raw": "{{url}}/deletejetpack",
-          "host": [
-            "{{url}}"
-          ],
-          "path": [
-            "deletejetpack"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Update Name",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "25f080b7-c8d9-456d-a9f4-54305b085a71",
-            "exec": [
-              "pm.test(\"Status code is 200\", function () {",
-              "    pm.response.to.have.status(200);",
-              "});",
-              "",
-              "pm.test(\"Json bdy has information\", function () {",
-              "    var jsonData = pm.response.json();",
-              "    pm.expect(jsonData[0].name).to.eql(\"Space X 2000\");",
-              "});",
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "4ca02c6b-c0c4-45a0-8e31-50f8247ed785",
-            "exec": [
-              "pm.globals.set('url', 'http://localhost:3000')"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "name": "Content-Type",
-            "type": "text",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\t\"id\":\"9bbcd455-8a66-4eb6-a650-6567e22f2cc3\",\n\t\"name\": \"Space X 2000\"\n}"
-        },
-        "url": {
-          "raw": "{{url}}/updateName",
-          "host": [
-            "{{url}}"
-          ],
-          "path": [
-            "updateName"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Update Image",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "255bf974-90ec-4021-b435-c642863645fd",
-            "exec": [
-              "pm.test(\"Status code is 200\", function () {",
-              "    pm.response.to.have.status(200);",
-              "});",
-              "",
-              "pm.test(\"Json bdy has information\", function () {",
-              "    var jsonData = pm.response.json();",
-              "    pm.expect(jsonData[0].image).to.eql(\"spaceX.jpg\");",
-              "});"
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "4db9f6c5-9ae2-4cde-9877-a5a4b4ccede7",
-            "exec": [
-              "pm.globals.set('url', 'http://localhost:3000')"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "name": "Content-Type",
-            "type": "text",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\t\"id\":\"9bbcd455-8a66-4eb6-a650-6567e22f2cc3\",\n\t\"image\": \"spaceX.jpg\"\n}"
-        },
-        "url": {
-          "raw": "{{url}}/updateImage",
-          "host": [
-            "{{url}}"
-          ],
-          "path": [
-            "updateImage"
-          ]
-        }
-      },
-      "response": []
-    }
-  ],
-  "protocolProfileBehavior": {}
+	"info": {
+		"_postman_id": "8417487f-6cfd-40a4-b8c4-5a188d2930f6",
+		"name": "Ensiie Test Back copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a Jet Pack",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
+						"exec": [
+							"pm.globals.set('url', 'http://localhost:3000')"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Json bdy has information\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(\"Jet Pack à fusion X2\");",
+							"    pm.expect(jsonData.image).to.eql(\"Base 64 ...\");",
+							"    pm.globals.set('jetpack.id', jsonData.id)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Jet Pack à fusion X2\",\n\t\"image\": \"Base 64 ...\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/jetpacks",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"jetpacks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get JetPack",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
+						"exec": [
+							"pm.globals.set('url', 'http://localhost:3000')"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Json bdy has information\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].name).to.eql(\"Jet Pack à fusion X98371\");",
+							"    pm.expect(jsonData[0].image).to.eql(\"Base 64 ...\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"8aa1f794-6fae-443b-9e01-75f9b0bdc4d7\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/jetpacks",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"jetpacks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Jet Packs",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
+						"exec": [
+							"pm.globals.set('url', 'http://localhost:3000')"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Json bdy has information\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].name).to.eql(\"Jet Pack à fusion X98371\");",
+							"    pm.expect(jsonData[0].image).to.eql(\"Base 64 ...\");",
+							"    pm.globals.set('jetpack.id', jsonData.id)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/jetpacks",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"jetpacks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete JetPack",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
+						"exec": [
+							"pm.globals.set('url', 'http://localhost:3000')"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"57ccf987-54a3-4484-85a0-9df79a1c5a5d\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/deletejetpack",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"deletejetpack"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25f080b7-c8d9-456d-a9f4-54305b085a71",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Json bdy has information\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].name).to.eql(\"Space X 2000\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4ca02c6b-c0c4-45a0-8e31-50f8247ed785",
+						"exec": [
+							"pm.globals.set('url', 'http://localhost:3000')"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"9bbcd455-8a66-4eb6-a650-6567e22f2cc3\",\n\t\"name\": \"Space X 2000\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/updateName",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"updateName"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Image",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1865a7f8-ea2e-47dc-81f9-e34e5609d19f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Json bdy has information\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].image).to.eql(\"spaceX.jpg\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3a5ff034-a046-46fc-9ed1-9b73b6adc746",
+						"exec": [
+							"pm.globals.set('url', 'http://localhost:3000')"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"9bbcd455-8a66-4eb6-a650-6567e22f2cc3\",\n\t\"image\": \"spaceX.jpg\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/updateImage",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"updateImage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Bookings",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
+						"exec": [
+							"pm.globals.set('url', 'http://localhost:3000')"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/bookings",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Booking",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "29cc937c-0294-49cd-ba3e-31f7b5f41eac",
+						"exec": [
+							"pm.globals.set('url', 'http://localhost:3000')"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cffee8b-566b-4c46-aa99-e2b76d4487bc",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"jetpackId\": \"8aa1f794-6fae-443b-9e01-75f9b0bdc4d7\",\n\t\"startDate\": \"2019-09-06T00:00:00.000Z\",\n\t\"endDate\": \"2019-09-10T00:00:00.000Z\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/bookings",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
 }
