@@ -20,7 +20,8 @@ app
     .post(require('./controller/Jetpack/UpdateImageJetpackController'));
 app
     .route('/bookings/')
-    .get(require('./controller/Booking/GetBookingController'));
+    .get(require('./controller/Booking/GetBookingController'))
+    .post(require('./controller/Booking/CreateBookingController'));
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
